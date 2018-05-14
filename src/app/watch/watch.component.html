@@ -1,0 +1,32 @@
+<div>
+  <input [(ngModel)] = "state" type="text"/>
+  {{state}}
+  <div [appHiglight]="color">Highlighted with parent component's color</div>
+  <button (click)="tooglefun()">toggle</button>
+  <div *appHideEl="toogle">自定义结构指令</div>
+  <button type="button" class="btn btn-primary" (click)="showmodel()">
+    show modal
+  </button>
+  <app-mudel title="自定义title" [show]="showmodelView" (close)="closeview($event)" (sub)="send()">
+    <div class="nudelContent">
+      <form [formGroup]="formModel" (submit)="onSubmit()" class="form-group">
+          <div class="form-group">
+            <label for="username">username</label>
+            <input class="form-control" id="username" placeholder="Enter username" [class.success]="formModel.get('username').valid && formModel.get('username').touched" [class.haserr]="formModel.get('username').invalid && formModel.get('username').touched" formControlName="username"/>
+          </div>
+          <div [hidden]="!(formModel.get('username').invalid && (formModel.get('username').dirty || formModel.get('username').touched))" class="alert alert-danger">
+            <div [hidden]=" !formModel.hasError('required','username')"> Name is required</div>
+            <div [hidden]="!formModel.hasError('minlength','username')">Name must be at least6 characters long.</div>
+          </div>
+          <div class="form-group">
+              <label for="phone">phone</label>
+              <input class="form-control" id="phone" placeholder="Enter phone" [class.success]="formModel.get('username').valid && formModel.get('username').touched" [class.haserr]="formModel.get('username').invalid && formModel.get('username').touched" formControlName="phone"/>
+            </div>
+            <div *ngIf="formModel.get('phone').invalid && (formModel.get('phone').dirty || formModel.get('phone').touched)">
+              <div *ngIf=" formModel.hasError('required','phone')" class="alert alert-danger"> phone is required</div>
+              <div *ngIf="formModel.hasError('not','phone')" class="alert alert-danger">please enter nice phone</div>
+            </div>
+    </form>
+    </div>
+  </app-mudel>
+</div>

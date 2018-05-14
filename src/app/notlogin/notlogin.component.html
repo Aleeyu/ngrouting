@@ -1,0 +1,45 @@
+<div>
+    <a class="nav-link" [routerLink] ="['/home/content']">notlogin to home</a>
+    <input type="text" [attr.value]="inputvalue" (input)="input($event)">
+    <button (click)="changea()">change</button>
+    <button [disabled]="disabled">disabled</button>
+    <p class="font" [class.red]="disabled">asdasdasdasdasdasdsadas</p>
+    <p [class]="mycalss">asdasdasdasdasdasdsadas</p>
+    <input type="text" [(ngModel)]="vl">
+    <p>双向绑定{{vl}}</p>
+    <p>时间{{d | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+    <p>圆周率是{{pi | number:'2.2-4'}}</p>
+    <p>{{a | currency:'USD':false}}</p>
+    <p>{{a | currency:'USD':true}}</p>
+<p>{{b | currency:'USD':true:'4.2-2'}}</p>
+<p>￥{{b | number:'.2-2'}}</p>
+<p>{{b | currency:'USD':true}}</p>
+<p>{{a | currency:'USD':true}}</p>
+<p>{{a | currency:'USD':true}}</p>
+<p>{{a | currency:'USD':true}}</p>
+<div>
+    <p>自己的管道无参数 (no formatting): {{pie | mypipe:'4.5-5'}}</p>
+    <p>自己的管道有参数 (no formatting): {{pie | mypipe}}</p>
+    <p>自己的管道有参数 (no formatting): {{rmb | currency:'￥':3}}</p>
+    <!--output '2.718'-->
+    <p>e (no formatting): {{e | number}}</p>
+
+    <!--output '002.71828'-->
+    <p>e (3.1-5): {{e | number:'3.1-5'}}</p>
+
+    <!--output '0,002.71828'-->
+    <p>e (4.5-5): {{e | number:'4.5-5'}}</p>
+
+    <!--output '0 002,71828'-->
+    <p>e (french): {{e | number:'4.5-5'}}</p>
+
+    <!--output '3.14'-->
+    <p>pi (no formatting): {{pi | number}}</p>
+
+    <!--output '003.14'-->
+    <p>pi (3.1-5): {{pi | number:'3.1-5'}}</p>
+
+    <!--output '003.14000'-->
+    <p>pi (3.5-5): {{pi | number:'3.5-5'}}</p>
+  </div>
+  </div>

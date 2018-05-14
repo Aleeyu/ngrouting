@@ -1,0 +1,13 @@
+<div>
+  来自父组件的值{{info}}
+  子组件的input传递数据给父组件
+        <input type="text" [(ngModel)]="childinfo">
+        <button (click)="send()">send</button>
+        <br>
+        子组件中间人传递给其他组件
+        <button (click)="senddfun($event)">child传递给other利用home</button>
+        <br>
+        <p>@input注解的是对象，再次改变了，不会触发onchange事件</p>
+        <ng-content select=".header"></ng-content>
+        <ng-content select=".footer"></ng-content>
+</div>

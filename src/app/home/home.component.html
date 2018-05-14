@@ -1,0 +1,31 @@
+  <app-navbar></app-navbar>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <app-search></app-search>
+        父组件接收
+        来自子组件的值-------->{{childinfo}}
+        <br>
+        <br>
+        父组件调用子组件的方法
+        <button (click)="usechildfun($event)">调用组件方法</button>
+        <br>
+        <br>
+        <input type="text" [(ngModel)]="info">
+        <input [(ngModel)]="isobj.name"/>再次改变isobj不会触发子组件的change事件,但是可以用docheck钩子解决
+        <button (click)="child1.fromhome('577556')">父组件在模板中调用子组件的方法</button>
+        <app-child #child1 [isobj]="isobj" [info]="info" (clildinfo)="getchildinfo($event)" (buy)="fromchild($event)">
+          <p class="header">类似插槽的功能,父组件的html插到子组件header</p>
+          <p class="footer">类似插槽的功能,父组件的html插到子组件footer</p>
+        </app-child>
+        <div [innerHTML]="'<P>ASDASDASDS</P>'"></div>
+        <br>
+        组件之间传递数据
+        <app-other [other]="other"></app-other>
+      </div>
+      <div class="col-md-9">
+          <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>

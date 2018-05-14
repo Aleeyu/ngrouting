@@ -1,0 +1,13 @@
+<p>商品id是{{id}}</p>
+<p>这是商品的详情</p>
+<p>{{productDetail.id}}</p>
+<p>{{productDetail.title}}</p>
+<p>{{productDetail.desc}}</p>
+<p>{{productDetail.star}}</p>
+<div *ngFor="let j of productDetail.category">
+  <p>{{j}}</p>
+</div>
+<div *ngFor="let i of comments">
+      <p>评论id是{{i.id}}</p>
+      <p>评论内容是{{i.comment}}</p>
+</div>

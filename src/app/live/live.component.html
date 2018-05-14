@@ -1,0 +1,18 @@
+<div>
+  live 组件的生命周期
+  <p>
+      //这个顺序是按照执行的先后排列的<br>
+      constructor：构造器函数，一般用于注入服务<br>
+      ngOnChanges：检测到输入数据变化，首次触发发生在ngOnInit前。注意对象的属性发生变化时监听不到<br>
+      ngOnInit：组件初始化，通常会设置一些初始值<br>
+      ngDoCheck：手动触发更新检查<br>
+      ngAfterContentInit：内容初始化到组件之后<br>
+      ngAfterContentChecked：内容变更检测之后<br>
+      ngAfterViewInit：视图 初始化之后<br>
+      ngAfterViewChecked：视图发生变化检测之后，这个可以用来保证用户视图的及时更新<br>
+      ngOnDestroy：组件注销时的清理工作，通常用于移除事件监听，退订可观察对象等<br>
+  </p>
+  <button (click)="change()">改变state</button>
+  <br>
+  {{state}}
+</div>

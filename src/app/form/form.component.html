@@ -1,0 +1,18 @@
+<div>
+  <h1>模板表单自定义指令验证表单</h1>
+  <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value, myForm.valid)" novalidate>
+    <div>number要四位<input #username="ngModel" ngModel name="username" valphone/></div>
+    <div [hidden]="!myForm.form.hasError('required','username')">请输入四位数字</div>
+    <div ngModelGroup="userinfo">
+      <div>密码<input type="password" #pwd="ngModel" ngModel name="pws"/></div>
+      <div>电话<input type="number" #phone="ngModel" ngModel name="phone"/></div>
+    </div>
+    <div><button type="submit">提交</button></div>
+  </form>
+  <div>
+    {{myForm.value | json}}
+  </div>
+  <div>
+    {{username.value}}
+  </div>
+</div>

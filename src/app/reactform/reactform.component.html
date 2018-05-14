@@ -1,0 +1,51 @@
+<div>
+    <h1>响应式表单</h1>
+    <input type="text" [formControl]="job">form外部用指令formControl绑定，内部用formControlName
+    <form [formGroup]="formModel" (submit)="onSubmit()">
+        <div><button (click)="addemail()">增加email</button></div>
+        <div>异步校验器<input formControlName="othername"/></div>
+        <div [hidden]="!(formModel.get('othername').invalid && (formModel.get('othername').dirty || formModel.get('othername').touched))" class="alert alert-danger">
+            <div [hidden]="!formModel.hasError('required','othername')"> number is required</div>
+            <div [hidden]="!formModel.hasError('phone','othername')">请输入四位数字</div>
+            <div [hidden]="!formModel.hasError('sync','othername')">异步校验失败</div>
+          </div>
+      <div>用户名<input [class.success]="formModel.get('username').valid && formModel.get('username').touched" [class.haserr]="formModel.get('username').invalid && formModel.get('username').touched" id='username' formControlName="username"/></div>
+      <div [hidden]="!(formModel.get('username').invalid && (formModel.get('username').dirty || formModel.get('username').touched))" class="alert alert-danger">
+        <div [hidden]=" !formModel.hasError('required','username')"> Name is required</div>
+        <div [hidden]="!formModel.hasError('minlength','username')">Name must be at least6 characters long.</div>
+      </div>
+      <div>number<input formControlName="number"/></div>
+      <div [hidden]="!(formModel.get('number').invalid && (formModel.get('number').dirty || formModel.get('number').touched))" class="alert alert-danger">
+          <div [hidden]=" !(formModel.get('number').errors && formModel.get('number').errors.required)"> number is required</div>
+          <div [hidden]="!(formModel.get('number').errors && formModel.get('number').errors.phone)">请输入四位数字</div>
+        </div>
+      <div formGroupName="userinfo">
+        <div>密码<input type="password" formControlName="pwd"/></div>
+        <div>重复密码<input type="password" formControlName="rpwd"/></div>
+      </div>
+      <div [hidden]="!(formModel.controls.userinfo.invalid && (formModel.get('userinfo').dirty || formModel.get('userinfo').touched))" class="alert alert-danger">
+          <div [hidden]="!(formModel.controls.userinfo.errors && formModel.controls.userinfo.errors.pwdrequired)"> 密码必填项</div>
+          <div [hidden]="!(formModel.controls.userinfo.errors && formModel.controls.userinfo.errors.rpwdrequired)"> 重复密码必填项</div>
+          <div [hidden]="!(formModel.controls.userinfo.errors && formModel.controls.userinfo.errors.equal)">{{formModel.controls.userinfo.errors && formModel.controls.userinfo.errors.msg}}</div>
+        </div>
+      <div>
+          <ul formArrayName="emails">
+              <li *ngFor="let e of formModel.controls.emails.controls; let i =index;">
+                  <input type="text" [formControlName]="i"  />
+              </li>
+          </ul>
+      </div>
+      <!-- <div formArrayName="emails">
+        <div *ngFor="let i of this.formModel.get('emails').controls;let inx = index">email<input type="text" [formControlName]="index"/></div>
+      </div> -->
+      <div><button type="submit">提交</button></div>
+    </form>
+    <div>
+      {{formModel.value | json}}
+    </div>
+    <div>
+      {{formModel.username}}
+    </div>
+    {{formModel.valid}}
+    <div *ngIf="formModel.get('othername').pending">异步校验中。。。</div>
+  </div>
